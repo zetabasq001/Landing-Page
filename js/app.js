@@ -23,14 +23,28 @@ document.addEventListener("DOMContentLoaded", main);
 
 function main(){
     let parts = document.querySelectorAll(".landing__container");
-    let navbar = document.querySelector(".navbar__menu ul");
+    let ul = document.querySelector("#navbar__list");
     for(let i = 1; i <= parts.length; i++){
         let li = document.createElement("li");
-        li.style.setProperty("width", "100px");
-        li.style.setProperty("color", "black");
-        li.textContent = `Section ${i}`; 
-        navbar.appendChild(li);
+        let div = document.createElement("div");
+        div.classList.add("menu__link");
+        li.appendChild(div);
+        ul.appendChild(li);
+        div.style.cursor = "pointer";
+        div.textContent = `Section ${i}`; 
     }
+
+    ul.addEventListener("click", activateSection);
+}
+
+function activateSection(event){
+
+    if (event.target.tagName === "DIV"){
+        let section = event.target.textContent;
+        let sectionNum = section.charAt(section.length - 1);
+        document.getElementById(`section${sectionNum}`).scrollIntoView({behavior: "smooth"});     
+    }
+    
 }
 
 
