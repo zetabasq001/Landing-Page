@@ -22,6 +22,28 @@
 document.addEventListener("DOMContentLoaded", main);
 
 function main(){
+    document.addEventListener("mouseover", activateSections);
+    populateNavBar();
+}
+
+function activateSections(){
+    let sections = document.querySelectorAll("section");
+    for(const section of sections){
+        let sectionDomRect = section.getBoundingClientRect();
+        let inViewPort = sectionDomRect.left >= 0 && sectionDomRect.top >= 0 
+        && (sectionDomRect.right <= (window.innerWidth
+        || document.documentElement.clientWidth))
+        && (sectionDomRect.bottom <= (window.innerHeight
+        || document.documentElement.clientHeight));
+        if(inViewPort){
+            section.classList.add("your-active-class");
+        } else {
+            section.classList.remove("your-active-class");
+        }
+    }
+}
+
+function populateNavBar(){
     let parts = document.querySelectorAll(".landing__container");
     let ul = document.querySelector("#navbar__list");
     for(let i = 1; i <= parts.length; i++){
@@ -34,17 +56,16 @@ function main(){
         div.textContent = `Section ${i}`; 
     }
 
-    ul.addEventListener("click", activateSection);
+    ul.addEventListener("click", scrollIntoSection);
 }
 
-function activateSection(event){
-
+function scrollIntoSection(event){
     if (event.target.tagName === "DIV"){
         let section = event.target.textContent;
         let sectionNum = section.charAt(section.length - 1);
-        document.getElementById(`section${sectionNum}`).scrollIntoView({behavior: "smooth"});     
-    }
-    
+        let sectionView = document.getElementById(`section${sectionNum}`)
+        sectionView.scrollIntoView({behavior: "smooth"}); 
+    }  
 }
 
 
