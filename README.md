@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-* [Descriptions](#descriptions)
+* [Description](#description)
 * [Usage](#usage)
 * [Dependencies](#dependencies)
 
