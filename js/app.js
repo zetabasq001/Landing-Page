@@ -51,7 +51,7 @@ function activateSections(){
 function populateNavBar(){
 
     // sectional css styling active upon scrolling down webpage
-    document.addEventListener("mouseover", activateSections);
+    document.addEventListener("scroll", activateSections);
 
     // get div tags associated with section class landing container
     let parts = document.querySelectorAll(".landing__container");
