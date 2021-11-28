@@ -28,7 +28,7 @@ function activateSections(){
     for(const section of sections){
 
         // get section dimensional coordinates
-        let sectionDomRect = section.getBoundingClientRect();
+        let sectionDomRect = section.getBoundingClientRect(); 
 
         // check if section is in viewport
         let inViewPort = sectionDomRect.left >= 0 && sectionDomRect.top >= 0
@@ -37,12 +37,17 @@ function activateSections(){
         && (sectionDomRect.bottom <= (window.innerHeight
         || document.documentElement.clientHeight));
 
+        // check if section is in mobile viewport
+        let inMobileViewPort = sectionDomRect.top <= 0
+        && sectionDomRect.bottom >= 100;
+        
         // if in viewport render section active for css styling
-        if(inViewPort){
-            section.classList.add("active"); 
-        } else
+        if(inViewPort || inMobileViewPort){
+            section.classList.add("active");
+        } else {
             section.classList.remove("active");
         }
+    }
 }
 
 /**
