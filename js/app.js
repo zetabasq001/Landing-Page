@@ -91,13 +91,16 @@ function populateNavBar(){
 
 /**
  * @description Event listener function scrolls into section upon clicking event
- * @param {click} event 
+ * @param {click} event - The click event
  */
 
 function scrollIntoSection(event){
-    
+
     // checks if the event target is the div tag that contains the anchor
     if (event.target.tagName === "DIV"){
+
+        // add highlight style to navigation menu section
+        event.target.classList.add("active2");
 
         // gets the div content section and section number
         let section = event.target.textContent;
@@ -110,7 +113,19 @@ function scrollIntoSection(event){
 
         // scrolls into view to the appropriate section
         sectionView.scrollIntoView({behavior: "smooth"}); 
-    }  
+    }
 
+    // set time for the highlight functionality
+    setTimeout(unhighlight, 750, event);
+
+    /**
+     * @description Function unhighlights navigation menu section
+     * @param {click} event - The click event
+     */
+    function unhighlight(event){
+
+        // remove highlighting from navigation menu section
+        event.target.classList.remove("active2");
+    } 
 }
 
